@@ -44,6 +44,14 @@ function App() {
     },
   ]);
 
+  const changeUserRole = () => {
+    if (userRole === "admin") {
+      setUserRole("user");
+    } else {
+      setUserRole("admin");
+    }
+  };
+
   return (
     <>
       {/* <ComponentA /> */}
@@ -51,10 +59,14 @@ function App() {
         <GreetingCard name={studentDetails.name} age={studentDetails.age} />
       ))} */}
 
-      {/* {userRole === "admin" ? <AdminPanel /> : <CustomerPanel />}
-      {isLoggedIn ? "Welcome back!" : "Log in first."} */}
+      {userRole === "admin" ? <AdminPanel /> : <CustomerPanel />}
+      {isLoggedIn ? "Welcome back!" : "Log in first."}
 
-      {details.map((studentDetail, index) => {
+      <button onClick={changeUserRole}>
+        Change User Role to {userRole === "admin" ? "User" : "Admin"}
+      </button>
+
+      {/* {details.map((studentDetail, index) => {
         return (
           <StudentDetails
             key={index}
@@ -64,7 +76,7 @@ function App() {
             enrollmentNo={studentDetail.enrollmentNo}
           />
         );
-      })}
+      })} */}
     </>
   );
 }
